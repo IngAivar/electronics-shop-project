@@ -27,3 +27,21 @@ def test_calculate_total_price(test_data):
 def test_apply_discount(test_data):
     test_data.apply_discount()
     assert test_data.price == 10000
+
+
+def test_name(test_data):
+    item = test_data
+
+    item.name = "Смартфон"
+
+    assert item.name == "Смартфон"
+
+    item.name = "Смартфон-Redme"
+
+    assert item.name == "Смартфон"
+
+
+def test_string_to_number():
+    assert Item.string_to_number('6') == 6
+    assert Item.string_to_number('7.0') == 7
+    assert Item.string_to_number('8.7') == 8
