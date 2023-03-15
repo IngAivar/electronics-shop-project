@@ -21,6 +21,14 @@ class Item:
         self.quantity = quantity
         Item.all.append(self)
 
+    def __repr__(self):
+        res = str(self.__class__).split('.')[-1][:-2]
+        return f"{res}('{self.name}', {self.price}, {self.quantity})"
+
+    def __str__(self):
+        res = f"{self.name}"
+        return res
+
     def calculate_total_price(self) -> float:
         """
         Рассчитывает общую стоимость конкретного товара в магазине.
