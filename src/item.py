@@ -29,6 +29,12 @@ class Item:
         res = f"{self.name}"
         return res
 
+    def __add__(self, other):
+        if isinstance(other, Item):
+            return self.quantity + other.quantity
+        else:
+            raise TypeError("ERROR: class Item + other type not implemented")
+
     def calculate_total_price(self) -> float:
         """
         Рассчитывает общую стоимость конкретного товара в магазине.
