@@ -1,8 +1,12 @@
 """Здесь надо написать тесты с использованием pytest для модуля item."""
 import pytest
+import pathlib
 
 from src.item import Item
+from src.errors import InstantiateCSVError
+from pathlib import Path
 
+dir_path = pathlib.Path.cwd()
 
 @pytest.fixture
 def test_data():
@@ -53,3 +57,15 @@ def test_str(test_data):
 
 def test_repr(test_data):
     assert repr(test_data) == "Item('Смартфон', 10000, 20)"
+
+
+def test_FileNotFoundError_errors():
+    file = ''
+    with pytest.raises(FileNotFoundError):
+        Item.instantiate_from_csv(file)
+
+
+def test_InstantiateCSVError_errors():
+    path_incorrect_file = Path(dir_path, 'incorrect_item.csv')
+    with pytest.raises(InstantiateCSVError):
+        Item.instantiate_from_csv(path_incorrect_file)
